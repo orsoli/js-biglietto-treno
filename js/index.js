@@ -28,3 +28,13 @@ console.log("Minor price/kilometer:", minorPrice, "$");
 //Senior price per kilometer
 const seniorPrice = (kmPrice - seniorDiscount * kmPrice).toFixed(3);
 console.log("Senior price/kilometer:", seniorPrice, "$");
+
+//--- Collection phase
+//Ask the user trip distance
+const distance = parseInt(
+  prompt("How far in KILOMETERS is your destination?", 130)
+);
+console.log(`Your destination is ${distance} KM from here.`);
+//Ask the user age
+const age = parseInt(prompt("Insert your age", 16));
+console.log(`I see that you are ${age} years old`);
