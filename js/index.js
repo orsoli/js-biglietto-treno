@@ -29,10 +29,12 @@ const seniorDiscount = 0.4;
 
 //Prices messages
 const messagePrice = "Your ticket price is:";
-const messageMinorPrice =
-  "You have received a 20% discount from the MinorPrice package.";
-const messageSeniorPrice =
-  "You have received a 40% discount from the SeniorPrice package.";
+const messageMinorPrice = `You have received a ${
+  minorDiscount * 100
+}% discount from the MinorPrice package.`;
+const messageSeniorPrice = `You have received a ${
+  seniorDiscount * 100
+}% discount from the SeniorPrice package.`;
 
 //Minor price per kilometer
 const minorPrice = (kmPrice - minorDiscount * kmPrice).toFixed(3);
@@ -90,11 +92,11 @@ else if (age < 18) {
   // Added text in elements of DOM
   resultPrice.innerHTML = `${messagePrice} <strong>${finalMinorPrice}$ </strong>`;
   resultDiscount.innerText = messageMinorPrice;
+} else {
+  message = `${messageSeniorPrice} ${messagePrice} ${finalSeniorPrice}$`;
+  // Added text in elements of DOM
+  resultPrice.innerHTML = `${messagePrice} <strong>${finalSeniorPrice}$</strong>`;
+  resultDiscount.innerText = messageSeniorPrice;
 }
-
-message = `${messageSeniorPrice} ${messagePrice} ${finalSeniorPrice}$`;
-// Added text in elements of DOM
-resultPrice.innerHTML = `${messagePrice} <strong>${finalSeniorPrice}$</strong>`;
-resultDiscount.innerText = messageSeniorPrice;
 
 console.log(message);
