@@ -39,17 +39,20 @@ console.log(`Senior price/kilometer: ${minorPrice} $`);
 const distance = parseInt(
   prompt("How far in KILOMETERS is your destination?", 130)
 );
-console.log(`Your destination is ${distance} KM from here.`);
 //Ask the user age
 const age = parseInt(prompt("Insert your age", 16));
-console.log(`I see that you are ${age} years old`);
 
 //! Validation
 const validNumber = isNaN(distance) || isNaN(age);
+// If one of users inputs is NAN
 if (validNumber) {
+  // Alert
   alert("Please insert only numbers in input forms");
+  // And reload the page
   location.reload(true);
 }
+console.log(`Your destination is ${distance} KM from here.`);
+console.log(`I see that you are ${age} years old`);
 
 //--- Processing phase
 //Calcolate final prices
