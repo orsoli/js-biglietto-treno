@@ -1,0 +1,16 @@
+The program should ask the user for the number of kilometers 
+they want to travel and the age of the passenger.
+
+Based on this we should calculate the price according these rules:
+1. The ticket price is defined based on the km (0.21 € per km)
+2. A 20% discount must be applied for minors
+3. A 40% discount must be applied for people over 65.
+
+*
+- The output of the final price should be presented with a maximum of two decimal places.
+
+Bonus
+- Print the final price on the page instead of in the console
+- Additionally, display other information on the page, 
+such as the price before the discount and the age and km specified by the user
+- Use CSS for appearance.
