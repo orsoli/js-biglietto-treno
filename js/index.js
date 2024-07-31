@@ -27,6 +27,13 @@ const minorDiscount = 0.2;
 //Senior discount (40%)
 const seniorDiscount = 0.4;
 
+//Prices messages
+const messagePrice = "Your ticket price is:";
+const messageMinorPrice =
+  "You have received a 20% discount from the MinorPrice package.";
+const messageSeniorPrice =
+  "You have received a 40% discount from the SeniorPrice package.";
+
 //Minor price per kilometer
 const minorPrice = (kmPrice - minorDiscount * kmPrice).toFixed(3);
 console.log(`Minor price/kilometer: ${minorPrice} $`);
@@ -43,11 +50,12 @@ const distance = parseInt(
 const age = parseInt(prompt("Insert your age", 16));
 
 //! Validation
+// Flag for user inputs is NAN or not
 const validNumber = isNaN(distance) || isNaN(age);
 // If one of users inputs is NAN
 if (validNumber) {
   // Alert
-  alert("Please insert only numbers in input forms");
+  alert("Please insert only numbers and > 0 in input forms");
   // And reload the page
   location.reload(true);
 }
@@ -59,6 +67,7 @@ console.log(`I see that you are ${age} years old`);
 const finalPrice = (kmPrice * distance).toFixed(2);
 const finalMinorPrice = (minorPrice * distance).toFixed(2);
 const finalSeniorPrice = (seniorPrice * distance).toFixed(2);
+// Added inner text in element of DOM
 resultInfo.innerText = `
 Price per kilometer ${kmPrice} $/km
 Minor price/kilometer: ${minorPrice} $
@@ -66,22 +75,25 @@ Senior price/kilometer: ${minorPrice} $
 Your destination is ${distance} KM from here.
 You are ${age} years old
 `;
+// Final message
+let message;
 // If is not minor also senior
 if (age >= 18 && age < 65) {
-  console.log(`Your ticket price is: ${finalPrice}$`);
-  resultPrice.innerHTML = `Your ticket price is: <strong>${finalPrice}$ </strong>`;
+  message = `${messagePrice} ${finalPrice}$`;
+  // Added text in element of DOM
+  resultPrice.innerHTML = `${messagePrice} <strong>${finalPrice}$ </strong>`;
 }
 // If is minor or senior
 else if (age < 18) {
-  console.log(
-    `You have received a 20% discount from the MinorPrice package. Your Ticket Price is : ${finalMinorPrice} $`
-  );
-  resultPrice.innerHTML = `Your ticket price is: <strong>${finalMinorPrice}$ </strong>`;
-  resultDiscount.innerText = `You have received a 20% discount from the MinorPrice package.`;
+  message = `${messageMinorPrice} ${messagePrice} ${finalMinorPrice}$`;
+  // Added text in elements of DOM
+  resultPrice.innerHTML = `${messagePrice} <strong>${finalMinorPrice}$ </strong>`;
+  resultDiscount.innerText = messageMinorPrice;
 } else {
-  console.log(
-    `You have received a 40% discount from the SeniorPrice package. Your Ticket Price is : ${finalSeniorPrice} $`
-  );
-  resultPrice.innerHTML = `Your ticket price is: <strong>${finalSeniorPrice}$ </strong>`;
-  resultDiscount.innerText = `You have received a 40% discount from the SeniorPrice package.`;
+  message = `${messageSeniorPrice} ${messagePrice} ${finalSeniorPrice}$`;
+  // Added text in elements of DOM
+  resultPrice.innerHTML = `${messagePrice} <strong>${finalSeniorPrice}$</strong>`;
+  resultDiscount.innerText = messageSeniorPrice;
 }
+
+console.log(message);
