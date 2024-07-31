@@ -44,6 +44,13 @@ console.log(`Your destination is ${distance} KM from here.`);
 const age = parseInt(prompt("Insert your age", 16));
 console.log(`I see that you are ${age} years old`);
 
+//! Validation
+const validNumber = isNaN(distance) || isNaN(age);
+if (validNumber) {
+  alert("Please insert only numbers in input forms");
+  location.reload(true);
+}
+
 //--- Processing phase
 //Calcolate final prices
 const finalPrice = (kmPrice * distance).toFixed(2);
