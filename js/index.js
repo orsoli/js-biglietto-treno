@@ -12,5 +12,19 @@
     - Print the final (minor/senior) price in consol in decimal precision max 2 dec places.
     BONU
     - Print in page
-
 */
+
+//--- Preparation phase
+// Price per kilometer
+const kmPrice = 0.21;
+// Minor discout (20%)
+const minorDiscount = 0.2;
+//Senior discount (40%)
+const seniorDiscount = 0.4;
+
+//Minor price per kilometer
+const minorPrice = (kmPrice - minorDiscount * kmPrice).toFixed(3);
+console.log("Minor price/kilometer:", minorPrice, "$");
+//Senior price per kilometer
+const seniorPrice = (kmPrice - seniorDiscount * kmPrice).toFixed(3);
+console.log("Senior price/kilometer:", seniorPrice, "$");
