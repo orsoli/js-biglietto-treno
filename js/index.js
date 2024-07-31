@@ -36,10 +36,10 @@ const messageSeniorPrice =
 
 //Minor price per kilometer
 const minorPrice = (kmPrice - minorDiscount * kmPrice).toFixed(3);
-console.log(`Minor price/kilometer: ${minorPrice} $`);
+console.log(`Minor price/kilometer: ${minorPrice}$`);
 //Senior price per kilometer
 const seniorPrice = (kmPrice - seniorDiscount * kmPrice).toFixed(3);
-console.log(`Senior price/kilometer: ${minorPrice} $`);
+console.log(`Senior price/kilometer: ${minorPrice}$`);
 
 //--- Collection phase
 //Ask the user trip distance
@@ -51,7 +51,8 @@ const age = parseInt(prompt("Insert your age", 16));
 
 //! Validation
 // Flag for user inputs is NAN or not
-const validNumber = isNaN(distance) || isNaN(age);
+const validNumber =
+  isNaN(distance) || distance === 0 || isNaN(age) || age === 0;
 // If one of users inputs is NAN
 if (validNumber) {
   // Alert
@@ -59,7 +60,7 @@ if (validNumber) {
   // And reload the page
   location.reload(true);
 }
-console.log(`Your destination is ${distance} KM from here.`);
+console.log(`Your destination is ${distance}KM from here.`);
 console.log(`I see that you are ${age} years old`);
 
 //--- Processing phase
@@ -69,9 +70,9 @@ const finalMinorPrice = (minorPrice * distance).toFixed(2);
 const finalSeniorPrice = (seniorPrice * distance).toFixed(2);
 // Added inner text in element of DOM
 resultInfo.innerText = `
-Price per kilometer ${kmPrice} $/km
-Minor price/kilometer: ${minorPrice} $
-Senior price/kilometer: ${minorPrice} $
+Price per kilometer ${kmPrice}$/km
+Minor price/kilometer: ${minorPrice}$
+Senior price/kilometer: ${minorPrice}$
 Your destination is ${distance} KM from here.
 You are ${age} years old
 `;
@@ -89,11 +90,11 @@ else if (age < 18) {
   // Added text in elements of DOM
   resultPrice.innerHTML = `${messagePrice} <strong>${finalMinorPrice}$ </strong>`;
   resultDiscount.innerText = messageMinorPrice;
-} else {
-  message = `${messageSeniorPrice} ${messagePrice} ${finalSeniorPrice}$`;
-  // Added text in elements of DOM
-  resultPrice.innerHTML = `${messagePrice} <strong>${finalSeniorPrice}$</strong>`;
-  resultDiscount.innerText = messageSeniorPrice;
 }
+
+message = `${messageSeniorPrice} ${messagePrice} ${finalSeniorPrice}$`;
+// Added text in elements of DOM
+resultPrice.innerHTML = `${messagePrice} <strong>${finalSeniorPrice}$</strong>`;
+resultDiscount.innerText = messageSeniorPrice;
 
 console.log(message);
