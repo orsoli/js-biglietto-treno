@@ -15,6 +15,10 @@
 */
 
 //--- Preparation phase
+//Retrieve the interested of elements on DOM
+const resultPrice = document.getElementById("price");
+const resultDiscount = document.getElementById("discount");
+const resultInfo = document.getElementById("info");
 // Price per kilometer
 const kmPrice = 0.21;
 console.log(`Price per kilometer ${kmPrice} $/km`);
@@ -25,10 +29,10 @@ const seniorDiscount = 0.4;
 
 //Minor price per kilometer
 const minorPrice = (kmPrice - minorDiscount * kmPrice).toFixed(3);
-console.log("Minor price/kilometer:", minorPrice, "$");
+console.log(`Minor price/kilometer: ${minorPrice} $`);
 //Senior price per kilometer
 const seniorPrice = (kmPrice - seniorDiscount * kmPrice).toFixed(3);
-console.log("Senior price/kilometer:", seniorPrice, "$");
+console.log(`Senior price/kilometer: ${minorPrice} $`);
 
 //--- Collection phase
 //Ask the user trip distance
@@ -45,22 +49,29 @@ console.log(`I see that you are ${age} years old`);
 const finalPrice = (kmPrice * distance).toFixed(2);
 const finalMinorPrice = (minorPrice * distance).toFixed(2);
 const finalSeniorPrice = (seniorPrice * distance).toFixed(2);
+resultInfo.innerText = `
+Price per kilometer ${kmPrice} $/km
+Minor price/kilometer: ${minorPrice} $
+Senior price/kilometer: ${minorPrice} $
+Your destination is ${distance} KM from here.
+You are ${age} years old
+`;
 // If is not minor also senior
 if (age >= 18 && age < 65) {
   console.log(`Your ticket price is: ${finalPrice}$`);
+  resultPrice.innerHTML = `Your ticket price is: <strong>${finalPrice}$ </strong>`;
 }
 // If is minor or senior
 else if (age < 18) {
   console.log(
     `You have received a 20% discount from the MinorPrice package. Your Ticket Price is : ${finalMinorPrice} $`
   );
+  resultPrice.innerHTML = `Your ticket price is: <strong>${finalMinorPrice}$ </strong>`;
+  resultDiscount.innerText = `You have received a 20% discount from the MinorPrice package.`;
 } else {
   console.log(
     `You have received a 40% discount from the SeniorPrice package. Your Ticket Price is : ${finalSeniorPrice} $`
   );
+  resultPrice.innerHTML = `Your ticket price is: <strong>${finalSeniorPrice}$ </strong>`;
+  resultDiscount.innerText = `You have received a 40% discount from the SeniorPrice package.`;
 }
-
-// const discountPrice =
-//   age < 18
-//     ? (minorPrice * distance).toFixed(2)
-//     : (seniorPrice * distance).toFixed(2);
