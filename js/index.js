@@ -17,6 +17,7 @@
 //--- Preparation phase
 // Price per kilometer
 const kmPrice = 0.21;
+console.log(`Price per kilometer ${kmPrice} $/km`);
 // Minor discout (20%)
 const minorDiscount = 0.2;
 //Senior discount (40%)
@@ -38,3 +39,28 @@ console.log(`Your destination is ${distance} KM from here.`);
 //Ask the user age
 const age = parseInt(prompt("Insert your age", 16));
 console.log(`I see that you are ${age} years old`);
+
+//--- Processing phase
+//Calcolate final prices
+const finalPrice = (kmPrice * distance).toFixed(2);
+const finalMinorPrice = (minorPrice * distance).toFixed(2);
+const finalSeniorPrice = (seniorPrice * distance).toFixed(2);
+// If is not minor also senior
+if (age >= 18 && age < 65) {
+  console.log(`Your ticket price is: ${finalPrice}$`);
+}
+// If is minor or senior
+else if (age < 18) {
+  console.log(
+    `You have received a 20% discount from the MinorPrice package. Your Ticket Price is : ${finalMinorPrice} $`
+  );
+} else {
+  console.log(
+    `You have received a 40% discount from the SeniorPrice package. Your Ticket Price is : ${finalSeniorPrice} $`
+  );
+}
+
+// const discountPrice =
+//   age < 18
+//     ? (minorPrice * distance).toFixed(2)
+//     : (seniorPrice * distance).toFixed(2);
